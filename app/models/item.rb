@@ -1,4 +1,4 @@
+# Класс, представляющий собой элементы чеклиста.
 class Item < ApplicationRecord
-  validates :task, presence: true
-  validates_length_of :task, maximum: 100
+  validates :task, presence: true, length: { maximum: 100 }
 end
