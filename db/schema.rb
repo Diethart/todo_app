@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180911090228) do
+ActiveRecord::Schema.define(version: 20180912104045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checklist_templates", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "checklist_templates_items", force: :cascade do |t|
+    t.bigint "checklist_template_id"
+    t.bigint "item_id"
+    t.index ["checklist_template_id"], name: "index_checklist_templates_items_on_checklist_template_id"
+    t.index ["item_id"], name: "index_checklist_templates_items_on_item_id"
+  end
 
   create_table "items", force: :cascade do |t|
     t.string "task", limit: 100, null: false
@@ -21,4 +33,6 @@ ActiveRecord::Schema.define(version: 20180911090228) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "checklist_templates_items", "checklist_templates"
+  add_foreign_key "checklist_templates_items", "items"
 end
