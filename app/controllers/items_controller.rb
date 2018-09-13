@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action -> { @item = Item.find(params[:id]) }, only: [:show, :edit, :destroy, :update]
+  before_action :find_item, only: [:show, :edit, :destroy, :update]
 
   def index
     @items = Item.all
@@ -10,9 +10,14 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Item.create(task: item_params[:task])
+    item = Item.new(item_params)
 
-    redirect_to items_path
+    if item.save
+      redirect_to items_path
+      return
+    end
+
+    render :new
   end
 
   def show
@@ -22,9 +27,12 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item.update(task: item_params[:task])
+    if @item.update(item_params)
+      redirect_to item_path(@item)
+      return
+    end
 
-    redirect_to item_path(@item)
+    render :edit
   end
 
   def destroy
@@ -37,5 +45,9 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:task)
+  end
+
+  def find_item
+    @item = Item.find(params[:id])
   end
 end

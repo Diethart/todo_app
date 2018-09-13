@@ -1,8 +1,7 @@
 .text-center
-  - if @items.present?
-    - @items.each do |item|
-      div
-        a.d-inline-block href=item_path(item)
-          h2 = item.task
-        a.d-inline-block.list-element href=item_path(item) data-method='delete' Delete
-        a.d-inline-block.list-element href=edit_item_path(item) Edit
+  - @items.each do |item|
+    div
+      a.d-inline-block href=item_path(item)
+        h2 = item.task
+      a.d-inline-block.list-element href=edit_item_path(item) Edit
+      a.d-inline-block.list-element href=item_path(item) data-method='delete' Delete
