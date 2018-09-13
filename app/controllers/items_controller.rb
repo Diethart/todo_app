@@ -13,11 +13,12 @@ class ItemsController < ApplicationController
     item = Item.new(item_params)
 
     if item.save
+      flash[:success] = t('items.success_create')
       redirect_to items_path
-      return
+    else
+      flash[:danger] = t('items.fail_create')
+      redirect_to new_item_path
     end
-
-    render :new
   end
 
   def show; end
@@ -26,16 +27,18 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
+      flash[:success] = t('items.success_update')
       redirect_to item_path(@item)
-      return
+    else
+      flash[:danger] = t('items.fail_update')
+      redirect_to edit_item_path(@item)
     end
-
-    render :edit
   end
 
   def destroy
     @item.destroy
 
+    flash[:success] = t('items.success_destroy')
     redirect_to items_path
   end
 

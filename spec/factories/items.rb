@@ -1,5 +1,7 @@
+require 'faker'
+
 FactoryBot.define do
   factory :item do
-    task 'Some task'
+    task Faker::Lorem.sentence
   end
 end
