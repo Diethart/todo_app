@@ -1,4 +1,4 @@
 .container
   = simple_form_for @item do |f|
-    = f.input :task, label: 'Input your task'
+    = f.input :task, label: t('items.task_label')
     = f.button :submit, class: 'btn-secondary'

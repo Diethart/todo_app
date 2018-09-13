@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+
+  edit_button: 'Edit'
+  delete_button: 'Delete'
+
+  items:
+    task_label: 'Input your task'
