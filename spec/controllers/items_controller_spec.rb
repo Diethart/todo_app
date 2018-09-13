@@ -68,7 +68,7 @@ RSpec.describe ItemsController, type: :controller do
       let(:item) { FactoryBot.create(:item) }
 
       before do
-        put :update, params: { id: item.id, item: { task: 'Some new task' }}
+        put :update, params: { id: item.id, item: { task: 'Some new task' } }
       end
 
       it 'assigns @item' do
@@ -90,7 +90,7 @@ RSpec.describe ItemsController, type: :controller do
       let(:item) { FactoryBot.create(:item) }
 
       it 'render edit template' do
-        put :update, params: { id: item.id, item: { task: '' }}
+        put :update, params: { id: item.id, item: { task: '' } }
 
         expect(response).to render_template :edit
       end

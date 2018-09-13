@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :find_item, only: [:show, :edit, :destroy, :update]
+  before_action :find_item, only: %i[show edit destroy update]
 
   def index
     @items = Item.all
@@ -20,11 +20,9 @@ class ItemsController < ApplicationController
     render :new
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @item.update(item_params)
