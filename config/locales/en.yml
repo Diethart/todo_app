@@ -31,3 +31,14 @@
 
 en:
   hello: "Hello world"
+
+  edit_button: 'Edit'
+  delete_button: 'Delete'
+
+  items:
+    success_update: 'Item successfully updated!'
+    fail_update: 'Failed to update'
+    success_destroy: 'Item successfully destroyed'
+    success_create: 'Item successfully created!'
+    fail_create: "Couldn't create an Item"
+    task_label: 'Input your task'

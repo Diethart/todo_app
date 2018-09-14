@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title TodoApp
+    = csrf_meta_tags
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body
+    nav.navbar.navbar-dark.bg-dark.navbar-expand-lg
+      a.navbar-brand href=items_path TODOApp
+
+      .collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item class=('active' if current_page? new_item_path )
+            a.nav-link href=new_item_path New Item
+    - flash.each do |key, val|
+      div class="alert alert-#{key}" = val
+
+    == yield
