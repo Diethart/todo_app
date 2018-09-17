@@ -4,8 +4,8 @@ html
     title TodoApp
     = csrf_meta_tags
 
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application'
 
   body
     nav.navbar.navbar-dark.bg-dark.navbar-expand-lg
@@ -15,6 +15,12 @@ html
         ul.navbar-nav.mr-auto
           li.nav-item class=('active' if current_page? new_item_path )
             a.nav-link href=new_item_path New Item
+          li.nav-item class=('active' if current_page? new_checklist_template_path )
+            a.nav-link href=new_checklist_template_path New ChecklistTemplate
+          li.nav-item class=('active' if current_page? checklist_templates_path )
+            a.nav-link href=checklist_templates_path All ChecklistTemplates
+          li.nav-item class=('active' if current_page? items_path )
+            a.nav-link href=items_path All Items
     - flash.each do |key, val|
       div class="alert alert-#{key}" = val
 

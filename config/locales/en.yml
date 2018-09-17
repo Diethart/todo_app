@@ -35,6 +35,11 @@ en:
   edit_button: 'Edit'
   delete_button: 'Delete'
 
+  checklist_templates:
+    success_create: 'Checklist template successfully created!'
+    fail_create: 'Failed to create checklist template'
+    success_destroy: 'Checklist template successfully destroyed'
+
   items:
     success_update: 'Item successfully updated!'
     fail_update: 'Failed to update'
