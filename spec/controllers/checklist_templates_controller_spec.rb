@@ -34,20 +34,24 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
   describe 'POST create' do
     let(:item) { create(:item) }
 
-    it 'create a checklist template with ChecklistTemplatesItem' do
-      post :create, params: { checklist_template: { items: [item.id] } }
+    context 'with ChecklistTemplatesItem' do
+      before do
+        post :create, params: { checklist_template: { items: [item.id] } }
+      end
 
-      expect(ChecklistTemplatesItem.last.item_id).to eq(item.id)
-      expect(response).to redirect_to checklist_templates_path
+      it 'create a checklist template' do
+        expect(ChecklistTemplatesItem.last.item_id).to eq(item.id)
+      end
+
+      it 'redirects_to checklist_template index' do
+        expect(response).to redirect_to checklist_templates_path
+      end
     end
 
-    it 'create a checklist template without ChecklistTemplatesItem' do
-      count = ChecklistTemplate.count
-
-      post :create, params: { checklist_template: { items: [""] } }
-
-      expect(count).to eq(ChecklistTemplate.count-1)
-      expect(response).to redirect_to checklist_templates_path
+    context 'without ChecklistTemplatesItem' do
+      it 'create a checklist template' do
+        expect{ post :create, params: { checklist_template: { items: [""] } } }.to change{ ChecklistTemplate.count }.by(1)
+      end
     end
   end
 
@@ -79,11 +83,7 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
     end
 
     it 'create new checklist templates item' do
-      count = checklist_template.items.count
-
-      put :update, params: { id: checklist_template.id, checklist_template: { items: [item.id] } }
-
-      expect(checklist_template.items.count).to eq(count+1)
+      expect{ put :update, params: { id: checklist_template.id, checklist_template: { items: [item.id] } }}.to change{ checklist_template.items.count}.by(1)
       expect(checklist_template.items.last).to eq(item)
     end
   end

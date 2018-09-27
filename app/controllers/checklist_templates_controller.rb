@@ -12,7 +12,7 @@ class ChecklistTemplatesController < ApplicationController
     checklist_template = ChecklistTemplate.new
 
     if checklist_template.save
-      ChecklistTemplatesItem.bind_items(checklist_template_params[:items], checklist_template)
+      checklist_template.items << Item.where(id: checklist_template_params[:items])
       flash[:success] = t('checklist_templates.success_create')
       redirect_to checklist_templates_path
     else
@@ -24,17 +24,7 @@ class ChecklistTemplatesController < ApplicationController
   def edit; end
 
   def update
-    ids = @checklist_template.items.pluck(:id)
-    params_ids = checklist_template_params[:items].reject(&:blank?).map(&:to_i)
-    delete_ids = ids - params_ids
-    create_ids = params_ids - ids
-
-
-    delete_ids.each do |id|
-      @checklist_template.checklist_templates_items.find_by(item_id: id).destroy
-    end
-
-    ChecklistTemplatesItem.bind_items(create_ids, @checklist_template)
+    ChecklistTemplateUpdateService.update_checklist_template(@checklist_template, checklist_template_params)
 
     redirect_to checklist_template_path(@checklist_template.id)
   end
