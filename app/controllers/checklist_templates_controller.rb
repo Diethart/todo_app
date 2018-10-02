@@ -24,7 +24,7 @@ class ChecklistTemplatesController < ApplicationController
   def edit; end
 
   def update
-    ChecklistTemplateUpdateService.update_checklist_template(@checklist_template, checklist_template_params)
+    ChecklistTemplateUpdateService.call(@checklist_template, checklist_template_params)
 
     redirect_to checklist_template_path(@checklist_template.id)
   end

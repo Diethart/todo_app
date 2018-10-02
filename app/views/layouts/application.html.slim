@@ -13,10 +13,10 @@ html
 
       .collapse.navbar-collapse
         ul.navbar-nav.mr-auto
-          = generate_link(new_item_path, 'New Item')
-          = generate_link(new_checklist_template_path, 'New ChecklistTemplate')
-          = generate_link(checklist_templates_path, 'All ChecklistTemplates')
-          = generate_link(items_path, 'All Items')
+          = generate_link(new_item_path, t('navbar.new_item_path'))
+          = generate_link(new_checklist_template_path, t('navbar.new_checklist_template_path'))
+          = generate_link(checklist_templates_path, t('navbar.checklist_templates_path'))
+          = generate_link(items_path, t('navbar.items_path'))
     - flash.each do |key, val|
       div class="alert alert-#{key}" = val
 
