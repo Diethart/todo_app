@@ -1,0 +1,4 @@
+.container
+  = simple_form_for @checklist_template do |f|
+    = f.input :items, label_method: :task, collection: Item.all, input_html: { multiple: true }, label: false, selected: @checklist_template.items.pluck(:id)
+    = f.button :submit, class: 'btn-secondary'

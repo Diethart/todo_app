@@ -35,6 +35,17 @@ en:
   edit_button: 'Edit'
   delete_button: 'Delete'
 
+  navbar:
+    new_item_path: 'New Item'
+    new_checklist_template_path: 'New ChecklistTemplate'
+    checklist_templates_path: 'All ChecklistTemplates'
+    items_path: 'All Items'
+
+  checklist_templates:
+    success_create: 'Checklist template successfully created!'
+    fail_create: 'Failed to create checklist template'
+    success_destroy: 'Checklist template successfully destroyed'
+
   items:
     success_update: 'Item successfully updated!'
     fail_update: 'Failed to update'
