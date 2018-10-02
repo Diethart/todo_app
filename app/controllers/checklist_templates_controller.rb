@@ -13,6 +13,8 @@ class ChecklistTemplatesController < ApplicationController
 
     if checklist_template.save
       checklist_template.items << Item.where(id: checklist_template_params[:items])
+      ChecklistTemplateUpdateService.position_items(checklist_template, checklist_template_params)
+
       flash[:success] = t('checklist_templates.success_create')
       redirect_to checklist_templates_path
     else

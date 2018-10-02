@@ -1,5 +1,5 @@
 .text-center
-  - @checklist_template.items.each do |item|
+  - @checklist_template.sorted_items.each do |item|
     div
       a.d-inline-block href=item_path(item)
         h2 = item.task
