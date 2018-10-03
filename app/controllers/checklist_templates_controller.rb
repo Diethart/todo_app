@@ -1,5 +1,7 @@
 class ChecklistTemplatesController < ApplicationController
   before_action :find_checklist_template, only: %i[edit update show destroy]
+  decorates_assigned :checklist_template
+
   def index
     @checklist_templates = ChecklistTemplate.all
   end
@@ -12,8 +14,7 @@ class ChecklistTemplatesController < ApplicationController
     checklist_template = ChecklistTemplate.new
 
     if checklist_template.save
-      checklist_template.items << Item.where(id: checklist_template_params[:items])
-      ChecklistTemplateUpdateService.position_items(checklist_template, checklist_template_params)
+      ChecklistTemplateHandlingService.call(checklist_template, checklist_template_params)
 
       flash[:success] = t('checklist_templates.success_create')
       redirect_to checklist_templates_path
@@ -26,7 +27,7 @@ class ChecklistTemplatesController < ApplicationController
   def edit; end
 
   def update
-    ChecklistTemplateUpdateService.call(@checklist_template, checklist_template_params)
+    ChecklistTemplateHandlingService.call(@checklist_template, checklist_template_params)
 
     redirect_to checklist_template_path(@checklist_template.id)
   end

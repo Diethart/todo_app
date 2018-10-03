@@ -6,8 +6,4 @@ class ChecklistTemplate < ApplicationRecord
   def sorted_items
     items.includes(:checklist_templates_items).order('checklist_templates_items.position')
   end
-
-  def select2_items
-    sorted_items + Item.all.where.not(id: items.pluck(:id))
-  end
 end
