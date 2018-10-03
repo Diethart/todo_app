@@ -46,6 +46,10 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
       it 'redirects_to checklist_template index' do
         expect(response).to redirect_to checklist_templates_path
       end
+
+      it 'set position number' do
+        expect(ChecklistTemplatesItem.last.position).to eq(0)
+      end
     end
 
     context 'without ChecklistTemplatesItem' do
@@ -74,6 +78,7 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
   describe 'PUT update' do
     let(:checklist_template) { create(:checklist_template) }
     let(:item) { create(:item) }
+    let(:second_item) { create(:item) }
     let(:checklist_templates_item) { create(:checklist_templates_item, checklist_template: checklist_template) }
 
     it 'destroy checklist templates item' do
@@ -85,6 +90,12 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
     it 'create new checklist templates item' do
       expect{ put :update, params: { id: checklist_template.id, checklist_template: { items: [item.id] } }}.to change{ checklist_template.items.count}.by(1)
       expect(checklist_template.items.last).to eq(item)
+    end
+
+    it 'set position number' do
+      put :update, params: { id: checklist_template.id, checklist_template: { items: [item.id, second_item.id] } }
+
+      expect(ChecklistTemplatesItem.last.position).to eq(1)
     end
   end
 
