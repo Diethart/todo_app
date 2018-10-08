@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181003211232) do
+ActiveRecord::Schema.define(version: 20181008140546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,23 @@ ActiveRecord::Schema.define(version: 20181003211232) do
     t.integer "position", default: 0
     t.index ["checklist_template_id"], name: "index_checklist_templates_items_on_checklist_template_id"
     t.index ["item_id"], name: "index_checklist_templates_items_on_item_id"
+  end
+
+  create_table "checklists", force: :cascade do |t|
+    t.bigint "checklist_template_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["checklist_template_id"], name: "index_checklists_on_checklist_template_id"
+  end
+
+  create_table "item_results", force: :cascade do |t|
+    t.bigint "checklist_id"
+    t.bigint "item_id"
+    t.boolean "done", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["checklist_id"], name: "index_item_results_on_checklist_id"
+    t.index ["item_id"], name: "index_item_results_on_item_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -61,4 +78,7 @@ ActiveRecord::Schema.define(version: 20181003211232) do
 
   add_foreign_key "checklist_templates_items", "checklist_templates"
   add_foreign_key "checklist_templates_items", "items"
+  add_foreign_key "checklists", "checklist_templates"
+  add_foreign_key "item_results", "checklists"
+  add_foreign_key "item_results", "items"
 end
