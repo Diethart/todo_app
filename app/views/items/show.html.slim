@@ -1,2 +1,6 @@
 .text-center
-  h2 =@item.task
+  h2.d-inline-block.text-block =t('items.task_show_label')
+  h2.d-inline-block.text-block =@item.task
+.text-center
+  h2.d-inline-block.text-block =t('items.tags_show_label')
+  h2.d-inline-block.text-block =@item.tag_list.to_s

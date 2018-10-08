@@ -45,7 +45,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:task)
+    params.require(:item).permit(:task, :tag_list)
   end
 
   def find_item

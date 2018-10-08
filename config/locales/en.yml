@@ -53,3 +53,5 @@ en:
     success_create: 'Item successfully created!'
     fail_create: "Couldn't create an Item"
     task_label: 'Input your task'
+    task_show_label: 'Task:'
+    tags_show_label: 'Tags:'
