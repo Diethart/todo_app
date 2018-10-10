@@ -2,7 +2,7 @@ class ItemResultsController < ApplicationController
   before_action :find_item_result, only: :update
 
   def update
-    @item_result.update(item_results_params)
+    @item_result.update!(item_results_params)
   end
 
   private
