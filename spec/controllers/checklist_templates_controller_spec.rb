@@ -36,7 +36,7 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
 
     context 'with ChecklistTemplatesItem' do
       before do
-        post :create, params: { checklist_template: { items: [item.id] } }
+        post :create, params: { checklist_template: { items: [item.id], title: 'test' } }
       end
 
       it 'create a checklist template' do
@@ -54,7 +54,7 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
 
     context 'without ChecklistTemplatesItem' do
       it 'create a checklist template' do
-        expect{ post :create, params: { checklist_template: { items: [""] } } }.to change{ ChecklistTemplate.count }.by(1)
+        expect{ post :create, params: { checklist_template: { items: [""], title: 'test' } } }.to change{ ChecklistTemplate.count }.by(1)
       end
     end
   end

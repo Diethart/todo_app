@@ -11,7 +11,7 @@ class ChecklistTemplatesController < ApplicationController
   end
 
   def create
-    checklist_template = ChecklistTemplate.new
+    checklist_template = ChecklistTemplate.new(checklist_template_params.except(:items))
 
     if checklist_template.save
       ChecklistTemplateHandlingService.call(checklist_template, checklist_template_params)
@@ -27,9 +27,15 @@ class ChecklistTemplatesController < ApplicationController
   def edit; end
 
   def update
-    ChecklistTemplateHandlingService.call(@checklist_template, checklist_template_params)
+    if @checklist_template.update(checklist_template_params.except(:items))
+      ChecklistTemplateHandlingService.call(@checklist_template, checklist_template_params)
 
-    redirect_to checklist_template_path(@checklist_template.id)
+      flash[:success] = t('checklist_templates.success_update')
+      redirect_to checklist_template_path(@checklist_template.id)
+    else
+      flash[:danger] = t('checklist_templates.fail_update')
+      redirect_to edit_checklist_template_path(@checklist_template.id)
+    end
   end
 
   def show; end
@@ -44,7 +50,7 @@ class ChecklistTemplatesController < ApplicationController
   private
 
   def checklist_template_params
-    params.require(:checklist_template).permit(items: [])
+    params.require(:checklist_template).permit(:title, items: [])
   end
 
   def find_checklist_template

@@ -1,0 +1,5 @@
+.container
+  = simple_form_for @checklist do |f|
+    = f.input :title
+    = f.input :checklist_template_id, label_method: :title, collection: ChecklistTemplate.all, label: false
+    = f.button :submit, class: 'btn-secondary'

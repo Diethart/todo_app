@@ -1,0 +1,7 @@
+.container
+  - item_results.each do |item|
+    = simple_form_for item, remote: true do |f|
+      .d-inline-block
+        h2 =item.item.task
+      .d-inline-block
+        = f.check_box :done

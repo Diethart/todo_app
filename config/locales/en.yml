@@ -40,11 +40,23 @@ en:
     new_checklist_template_path: 'New ChecklistTemplate'
     checklist_templates_path: 'All ChecklistTemplates'
     items_path: 'All Items'
+    checklists_path: 'All Checklists'
+    new_checklist_path: 'New Checklist'
+
+  checklists:
+    success_create: 'Checklist successfully created!'
+    fail_create: 'Failed to create checklist'
+    success_update: 'Checklist successfully updated!'
+    fail_update: 'Failed to update checklist'
+    success_destroy: 'Checklist successfully destroyed'
 
   checklist_templates:
     success_create: 'Checklist template successfully created!'
     fail_create: 'Failed to create checklist template'
+    success_update: 'Checklist template successfully updated!'
+    fail_update: 'Failed to update checklist template'
     success_destroy: 'Checklist template successfully destroyed'
+    title_show_label: 'Title'
 
   items:
     success_update: 'Item successfully updated!'
