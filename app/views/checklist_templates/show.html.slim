@@ -1,4 +1,7 @@
 .text-center
+  h2.d-inline-block.text-block =t('checklist_templates.title_show_label')
+  h2.d-inline-block.text-block =@checklist_template.title
+.text-center
   - @checklist_template.sorted_items.each do |item|
     div
       a.d-inline-block href=item_path(item)

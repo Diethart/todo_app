@@ -1,0 +1,7 @@
+.text-center
+  - @checklists.each do |checklist|
+    div
+      a.d-inline-block href=checklist_path(checklist)
+        h2 = checklist.title
+      a.d-inline-block.list-element href=edit_checklist_path(checklist) = t('edit_button')
+      a.d-inline-block.list-element href=checklist_path(checklist) data-method='delete' = t('delete_button')
