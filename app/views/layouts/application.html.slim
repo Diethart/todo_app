@@ -19,6 +19,14 @@ html
           = generate_link(items_path, t('navbar.items_path'))
           = generate_link(checklists_path, t('navbar.checklists_path'))
           = generate_link(new_checklist_path, t('navbar.new_checklist_path'))
+
+        ul.navbar-nav.navbar-right
+          - unless logged_in?
+            = generate_link(login_path, t('navbar.login_path'))
+            = generate_link(register_path, t('navbar.register_path'))
+            = generate_link(auth_at_provider_path(provider: :facebook), t('navbar.facebook_login'))
+          - else
+            = generate_link(logout_path, t('navbar.logout_path'), :post)
     - flash.each do |key, val|
       div class="alert alert-#{key}" = val
 
