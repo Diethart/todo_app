@@ -10,7 +10,7 @@ Rails.application.config.sorcery.configure do |config|
 
   config.facebook.key = ENV['facebook_key']
   config.facebook.secret = ENV['facebook_secret']
-  config.facebook.callback_url = "http://localhost:3000/oauth/callback?provider=facebook"
+  config.facebook.callback_url = "https://banana-sundae.herokuapp.com/oauth/callback?provider=facebook"
   config.facebook.user_info_mapping = {:email => "email", :name => "name", :username => "username", :hometown => "hometown/name"} #etc
   config.facebook.scope = "email"
   config.facebook.display = "popup"
