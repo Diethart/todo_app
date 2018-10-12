@@ -35,6 +35,14 @@ en:
   edit_button: 'Edit'
   delete_button: 'Delete'
 
+  user_sessions:
+    login: 'Login'
+    login_failed: 'Login failed'
+    logged_in: 'Successfully logged in!'
+    logged_out: 'Logged out!'
+    logged_from_provider: 'Successfully logged in from %{provider_name}'
+    failed_logged_from_provider: 'Failed to login from %{provider_name}!'
+
   navbar:
     new_item_path: 'New Item'
     new_checklist_template_path: 'New ChecklistTemplate'
@@ -42,6 +50,14 @@ en:
     items_path: 'All Items'
     checklists_path: 'All Checklists'
     new_checklist_path: 'New Checklist'
+    login_path: 'Login'
+    register_path: 'Register'
+    logout_path: 'Logout'
+    facebook_login: 'Login with Facebook'
+
+  users:
+    success_create: 'User was successfully created'
+    fail_create: 'Failed to create User'
 
   checklists:
     success_create: 'Checklist successfully created!'

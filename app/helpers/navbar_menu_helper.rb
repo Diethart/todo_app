@@ -1,7 +1,7 @@
 module NavbarMenuHelper
-  def generate_link(path, title)
+  def generate_link(path, title, method = :get)
     content_tag(:li, class: link_class(path)) do
-      link_to title, path, class: 'nav-link'
+      link_to title, path, class: 'nav-link', method: method
     end
   end
 
